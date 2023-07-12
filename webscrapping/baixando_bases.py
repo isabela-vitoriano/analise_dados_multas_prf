@@ -19,7 +19,7 @@ soup = BeautifulSoup(html_content, 'html.parser')
 links = soup.find_all('a', {'title': lambda value: value and 'infrações' in value.lower()})
 
 # Define anos de extração
-anos = ['2019', '2020', '2021']
+anos = ['2017', '2018', '2019', '2020', '2021']
 
 # Itera sobre os links e faz o download dos arquivos CSV para os anos desejados
 for link in links:
