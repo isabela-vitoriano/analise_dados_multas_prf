@@ -3,6 +3,7 @@ import requests
 import gdown
 from bs4 import BeautifulSoup
 import zipfile
+import os
 
 url = 'https://www.gov.br/prf/pt-br/acesso-a-informacao/dados-abertos/dados-abertos-da-prf'  # URL da página da PRF que contém os arquivos CSV
 
@@ -19,7 +20,7 @@ soup = BeautifulSoup(html_content, 'html.parser')
 links = soup.find_all('a', {'title': lambda value: value and 'infrações' in value.lower()})
 
 # Define anos de extração
-anos = ['2017', '2018', '2019', '2020', '2021']
+anos = ['2019', '2020', '2021']
 
 # Itera sobre os links e faz o download dos arquivos CSV para os anos desejados
 for link in links:
@@ -52,5 +53,21 @@ for link in links:
         # Extrai o conteúdo do arquivo zipado
         with zipfile.ZipFile(output_zip, 'r') as zip_ref:
             zip_ref.extractall(output_dir)
+
+        # Remove os arquivos zipados
+        os.remove(output_zip)
+
+        extracted_folder = "arquivos_extraidos"  # Nome da pasta para armazenar os arquivos extraídos
+        os.makedirs(extracted_folder, exist_ok=True) # Cria a pasta "arquivos_extraidos" se ela não existir
+
+        # Move os arquivos extraídos para a pasta "arquivos_extraidos"
+#        extracted_files = os.listdir(output_dir)  # Obtém a lista de arquivos na pasta "output_dir"
+#        for file_name in extracted_files:  # Itera sobre cada arquivo na lista
+#            file_path = os.path.join(output_dir, file_name)  # Caminho completo do arquivo na pasta "output_dir"
+#            new_path = os.path.join(extracted_folder, file_name)  # Novo caminho completo para mover o arquivo
+#            os.rename(file_path, new_path)  # Move o arquivo para a pasta "arquivos_extraidos" usando o novo caminho
+        
+        # Remove pasta única
+#        os.remove(output_dir)
 
         print(f'Download e extração de {title} concluídos.')
