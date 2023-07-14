@@ -4,6 +4,8 @@ import gdown
 from bs4 import BeautifulSoup
 import zipfile
 import os
+from time import sleep
+import shutil
 
 url = 'https://www.gov.br/prf/pt-br/acesso-a-informacao/dados-abertos/dados-abertos-da-prf'  # URL da página da PRF que contém os arquivos CSV
 
@@ -20,7 +22,7 @@ soup = BeautifulSoup(html_content, 'html.parser')
 links = soup.find_all('a', {'title': lambda value: value and 'infrações' in value.lower()})
 
 # Define anos de extração
-anos = ['2019', '2020', '2021']
+anos = ['2018', '2019', '2020', '2021', '2022']
 
 # Itera sobre os links e faz o download dos arquivos CSV para os anos desejados
 for link in links:
@@ -31,7 +33,7 @@ for link in links:
     title = link.get('title')
 
     # Verifica se o link termina com a extensão '.csv' e se o título existe e contém 'infrações. Verifica se o título contém os anos desejados'
-    if (title and 'infrações' in title) and any(ano in title for ano in anos):
+    if ('INFRAÇÕES' in title.upper()) and any(ano in title for ano in anos):
         print(title)
         output_zip = title + '.zip'  # Nome do arquivo zipado de saída
         output_dir = title + '_extraido'  # Diretório de saída para extrair os arquivos
@@ -61,13 +63,30 @@ for link in links:
         os.makedirs(extracted_folder, exist_ok=True) # Cria a pasta "arquivos_extraidos" se ela não existir
 
         # Move os arquivos extraídos para a pasta "arquivos_extraidos"
-#        extracted_files = os.listdir(output_dir)  # Obtém a lista de arquivos na pasta "output_dir"
-#        for file_name in extracted_files:  # Itera sobre cada arquivo na lista
-#            file_path = os.path.join(output_dir, file_name)  # Caminho completo do arquivo na pasta "output_dir"
-#            new_path = os.path.join(extracted_folder, file_name)  # Novo caminho completo para mover o arquivo
-#            os.rename(file_path, new_path)  # Move o arquivo para a pasta "arquivos_extraidos" usando o novo caminho
+        for root, dirs, files in os.walk(output_dir):  # Itera sobre cada arquivo na lista
+            for file_name in files:
+                file_path = os.path.join(root, file_name)  # Caminho completo do arquivo
+                relative_path = os.path.relpath(file_path, output_dir)  # Caminho relativo ao diretório de saída
+                new_path = os.path.join(extracted_folder, file_name)  # Novo caminho completo para mover o arquivo
+                # Cria o diretório pai do novo caminho, se necessário
+                print(file_path)
+                print(new_path)
+#                os.makedirs(os.path.dirname(new_path), exist_ok=True)
+                os.rename(file_path, new_path)  # Move o arquivo para a pasta "arquivos_extraidos" usando o novo caminho
+
+            print(f'dir: {dirs}')
+            print(f'output_dir: {output_dir}')
         
-        # Remove pasta única
-#        os.remove(output_dir)
+        # Verificar se o diretório raiz e seus subdiretórios estão vazios
+        is_empty = True
+        for dir_name in dirs:
+            dir_path = os.path.join(output_dir, dir_name)
+            if os.listdir(dir_path):
+                is_empty = False
+                break
+
+        # Remover o diretório raiz se estiver vazio
+        if is_empty:
+            shutil.rmtree(output_dir)
 
         print(f'Download e extração de {title} concluídos.')
