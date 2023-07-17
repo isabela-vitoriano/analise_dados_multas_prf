@@ -22,7 +22,7 @@ soup = BeautifulSoup(html_content, 'html.parser')
 links = soup.find_all('a', {'title': lambda value: value and 'infrações' in value.lower()})
 
 # Define anos de extração
-anos = ['2018', '2019', '2020', '2021', '2022']
+anos = ['2020', '2021', '2022']
 
 # Itera sobre os links e faz o download dos arquivos CSV para os anos desejados
 for link in links:
@@ -35,6 +35,7 @@ for link in links:
     # Verifica se o link termina com a extensão '.csv' e se o título existe e contém 'infrações. Verifica se o título contém os anos desejados'
     if ('INFRAÇÕES' in title.upper()) and any(ano in title for ano in anos):
         print(title)
+        
         output_zip = title + '.zip'  # Nome do arquivo zipado de saída
         output_dir = title + '_extraido'  # Diretório de saída para extrair os arquivos
         # Extrai o ID do arquivo do link compartilhado
@@ -42,7 +43,7 @@ for link in links:
 
         # Constrói a URL direta do arquivo para download
         download_url = f'https://drive.google.com/uc?id={file_id}'
-        print(download_url)
+
         # Faz o download do arquivo em chunks usando a biblioteca requests
         response = requests.get(download_url, stream=True, params = {'confirm' : 1 })
 
@@ -68,14 +69,7 @@ for link in links:
                 file_path = os.path.join(root, file_name)  # Caminho completo do arquivo
                 relative_path = os.path.relpath(file_path, output_dir)  # Caminho relativo ao diretório de saída
                 new_path = os.path.join(extracted_folder, file_name)  # Novo caminho completo para mover o arquivo
-                # Cria o diretório pai do novo caminho, se necessário
-                print(file_path)
-                print(new_path)
-#                os.makedirs(os.path.dirname(new_path), exist_ok=True)
                 os.rename(file_path, new_path)  # Move o arquivo para a pasta "arquivos_extraidos" usando o novo caminho
-
-            print(f'dir: {dirs}')
-            print(f'output_dir: {output_dir}')
         
         # Verificar se o diretório raiz e seus subdiretórios estão vazios
         is_empty = True
