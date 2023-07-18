@@ -36,6 +36,6 @@ Desenvolvedora do Projeto: Isabela Vitoriano
 
 Contato:
 
-[Linkedin](https://www.linkedin.com/in/isabela-vitoriano/)
+[Linkedin: https://www.linkedin.com/in/isabela-vitoriano/](https://www.linkedin.com/in/isabela-vitoriano/)
 
-[E-mail](isabelavitoriano.ss@gmail.com)
+[E-mail: isabelavitoriano.ss@gmail.com](isabelavitoriano.ss@gmail.com)
