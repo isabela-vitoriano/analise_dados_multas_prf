@@ -33,6 +33,9 @@ Os dados utilizados neste projeto são disponibilizados pela PRF e podem ser enc
 ## Contato
 
 Desenvolvedora do Projeto: Isabela Vitoriano
+
 Contato:
+
 [Linkedin](https://www.linkedin.com/in/isabela-vitoriano/)
+
 [E-mail](isabelavitoriano.ss@gmail.com)
