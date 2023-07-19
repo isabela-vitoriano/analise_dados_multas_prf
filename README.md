@@ -8,7 +8,7 @@ Os dados são coletados do site oficial da PRF, especificamente da seção de "D
 
 ## Status do projeto
 
-Em desenvolvimento.
+Versão 1.0
 
 ## Tecnologias Utilizadas
 
