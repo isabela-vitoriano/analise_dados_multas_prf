@@ -30,6 +30,36 @@ A análise de dados das multas da PRF desempenha um papel fundamental na identif
 
 Os dados utilizados neste projeto são disponibilizados pela PRF e podem ser encontrados no seguinte link: [Dados Abertos da PRF](https://www.gov.br/prf/pt-br/acesso-a-informacao/dados-abertos/dados-abertos-da-prf)
 
+## Dicionários das variáveis
+
+| Nome Atual                         | Descrição                                        |
+|------------------------------------|--------------------------------------------------|
+| Número do Auto                     | Identificador único do auto de infração          |
+| Data da Infração (DD/MM/AAAA)      | Data da infração no formato dd/mm/aaaa           |
+| Indicador de Abordagem             | Identifica se houve abordagem do veículo         |
+| Assinatura do Auto                 | Informa se o infrator assinou o auto de infração |
+| Indicador Veiculo Estrangeiro      | Informa se o veículo é estrangeiro               |
+| Sentido Trafego                    | Sentido da via onde ocorreu a infração           |
+| UF Placa                           | Unidade federativa da placa do veículo           |
+| UF Infração                        | Unidade federativa do local da infração          |
+| BR Infração                        | Identificador da BR onde ocorreu a infração      |
+| Km Infração                        | Identificação do quilômetro da infração          |
+| Município                          | Nome do município onde ocorreu a infração        |
+| Código da Infração                 | Não há correspondência                           |
+| Descrição Abreviada Infração       | Descrição abreviada da infração                  |
+| Enquadramento da Infração          | Enquadramento da infração de acordo com o CTB    |
+| Início Vigência da Infração        | Data do início da vigência da infração           |
+| Fim Vigência Infração              | Data do fim da vigência da infração              |
+| Medição Infração                   | Registro da medição realizada                    |
+| Descrição Especie Veículo          | Espécie do veículo                               |
+| Descrição Marca Veículo            | Marca do veículo                                 |
+| Hora Infração                      | Horário em que ocorreu a infração                |
+| Medição Considerada                | Medição considerada para o registro da infração  |
+| Excesso Verificado                 | Excesso verificado nas infrações                 |
+| Qtd Infrações                      | Quantidade de infrações (sempre 1)               |
+| Descrição Tipo Veículo             | Espécie do veículo                               |
+| Descrição Modelo Veiculo           | Modelo do veículo                                |
+
 ## Contato
 
 Desenvolvedora do Projeto: Isabela Vitoriano
