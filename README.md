@@ -12,7 +12,7 @@ Versão 1.0
 
 ## Tecnologias Utilizadas
 
-Python 3.9.13 | Bibliotecas: pandas, numpy, requests, beautifulsoup4, zipfile, os, shutil, matplotlib
+Python 3.9.13 | Bibliotecas: pandas, numpy, requests, beautifulsoup4, matplotlib, plotly, zipfile, os, shutil
 
 ## Como usar
 
